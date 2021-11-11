@@ -1,24 +1,28 @@
-import React from 'react'
-import CarItem from './CarItem'
+import React, { useEffect, useReducer } from 'react'
+import CarsContext from '../../cars/CarsContext'
+import cars from '../../data/cars'
+import CarListItem from './CarListItem'
+import carsReducer from '../../cars/carsReducer'
+import CarClicker from './CarClicker'
+import CarList from './CarList'
+import CarsRouter from '../../Routers/CarsRouter'
+
+const init = () => JSON.parse(localStorage.getItem('cars')) || cars
 
 const CarClickerScreen = () => {
+  const [state, dispatch] = useReducer(carsReducer, cars, init)
+
+  useEffect(() => {
+    localStorage.setItem('cars', JSON.stringify(state))
+  }, [state])
+
+
   return (
-    <>
+    <CarsContext.Provider value={{ state, dispatch }}>
       <h1>CarClickerScreen</h1>
       <hr />
-      <div className="row g-5">
-        <div className="col-md-5">
-          <h2>Car List</h2>
-          <ul className="list-group shadow">
-            <CarItem clickCount={2} name="An item" />
-            <CarItem clickCount={1} name="A second item" />
-          </ul>
-        </div>
-        <div className="col-md-7">
-          <h2>Some Car model</h2>
-        </div>
-      </div>
-    </>
+      <CarsRouter />
+    </CarsContext.Provider>
   )
 }
 
