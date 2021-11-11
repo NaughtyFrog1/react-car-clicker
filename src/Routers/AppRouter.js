@@ -9,7 +9,7 @@ const AppRouter = () => {
     <Router>
       <Navbar />
 
-      <div className="container-fluid mt-4">
+      <div className="container-md mt-4">
         <Switch>
           <Route path="/about"><AboutScreen /></Route>
           <Route path="/"><CarClicker /></Route>
