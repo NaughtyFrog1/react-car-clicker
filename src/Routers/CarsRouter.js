@@ -17,8 +17,8 @@ const CarsRouter = () => {
         <div className="col-md-7">
           <Switch>
             {state.map((car) => (
-              <Route path={`/${car.id}`}>
-                <CarClicker {...car} />
+              <Route path={`/${car.id}`} key={car.id}>
+                <CarClicker carId={car.id} />
               </Route>
             ))}
           </Switch>

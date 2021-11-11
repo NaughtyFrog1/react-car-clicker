@@ -1,10 +1,7 @@
 import React, { useEffect, useReducer } from 'react'
 import CarsContext from '../../cars/CarsContext'
 import cars from '../../data/cars'
-import CarListItem from './CarListItem'
 import carsReducer from '../../cars/carsReducer'
-import CarClicker from './CarClicker'
-import CarList from './CarList'
 import CarsRouter from '../../Routers/CarsRouter'
 
 const init = () => JSON.parse(localStorage.getItem('cars')) || cars
